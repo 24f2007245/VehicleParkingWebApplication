@@ -34,10 +34,10 @@ def login():
         session['roles'] = user.roles
 
         if 'admin' in user.roles:
-            return render_template('admin_dashboard.html')
+            return redirect(url_for('dashboard'))
         
         flash('login successful', 'success')
-        return render_template('dashboard.html')
+        return redirect(url_for("dashboard"))
    
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -64,25 +64,27 @@ def dashboard():
         return redirect(url_for('login'))
     
     if 'roles' in session and 'admin' in session['roles']:
-        return render_template('admin_dashboard.html')
+
+        return render_template('admin_dashboard.html',parking_lots=ParkingLot.query.all())
     
-    return render_template('dashboard.html')
+    return render_template('dashboard.html',parking_lots=ParkingLot.query.all())
 
 @app.route('/registered_users')
 def registered_users():
+    
     return render_template('registered_users.html',usersdata=UserData.query.all())
 
 @app.route('/add_lot', methods=['GET', 'POST'])
 def add_lot():
     if request.method == 'POST':
-        id = request.form.get('id')
+        id = int(request.form.get('id'))
         location = request.form.get('location')
-        total_slots = request.form.get('total_slots')
+        total_slots = int(request.form.get('total_slots'))
         pin_code = request.form.get('pin_code')
         price = request.form.get('price')
         address = request.form.get('address')
 
-        # Convert data types (important!)
+       
         try:
             total_slots = int(total_slots) if total_slots else 0
             price = float(price) if price else 0.0
@@ -100,12 +102,36 @@ def add_lot():
         db.session.commit()
 
         flash('Parking lot added successfully.', 'success')
-        return redirect(url_for('add_lot'))  # Or redirect to another page
+        return redirect(url_for('add_lot'))  
     return render_template('add_lot.html')
+@app.route('/edit_lot/<int:id>', methods=['GET', 'POST'])
+def edit_lot(id):
+    lot = ParkingLot.query.get_or_404(id)
+
+    if request.method == 'POST':
+        lot.id = request.form.get('id') 
+        lot.location = request.form.get('location')
+        lot.address = request.form.get('address')
+        lot.pin_code = request.form.get('pin_code')
+        lot.total_slots = int(request.form.get('total_slots'))
+        lot.price = request.form.get('price')
+
+        db.session.commit()
+
+        return redirect(url_for('dashboard')) 
+
+    return render_template('edit_lot.html', lot=lot)
+
 
 @app.route('/go_add_lot')
 def go_add_lot():
+    
     return render_template('add_lot.html')
+
+@app.route('/go_add_spot')
+def go_add_spot():
+    return render_template('add_spot.html')
+
 
 @app.route('/logout')
 def logout():

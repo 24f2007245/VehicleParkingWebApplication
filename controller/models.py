@@ -4,13 +4,13 @@ from datetime import datetime
 
 class UserData(db.Model):
     __tablename__='user_data'
-    id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
-    user_name = db.Column(db.String(60), nullable=False)
-    user_email = db.Column(db.String(130),unique=True, nullable=False)
-    password= db.Column(db.String(200), nullable=False)
+    id = db.Column(db.Integer(), primary_key =True, autoincrement=True)
+    user_name = db.Column(db.String(60), nullable =False)
+    user_email = db.Column(db.String(130),unique =True, nullable=False)
+    password= db.Column(db.String(200), nullable =False)
     vehicle_no = db.Column(db.String(20))
-    address = db.Column(db.String(200), nullable=True)  # Optional address field
-    roles = db.Column(db.String(20), default='user')  # Default role is 'user'
+    address = db.Column(db.String(200), nullable =True)  
+    roles = db.Column(db.String(20), default ='user')  
 
 class ParkingLot(db.Model):
     __tablename__='parking_lot'
@@ -19,9 +19,10 @@ class ParkingLot(db.Model):
     location = db.Column(db.String(100), nullable=True)
     pin_code = db.Column(db.String(10), nullable=False)
     price = db.Column(db.Float, nullable=False)
-    address = db.Column(db.String(200), nullable=True)  # Optional address field
+    address = db.Column(db.String(200), nullable=True)  
     total_slots = db.Column(db.Integer(), nullable=False)
-    available_slots = db.Column(db.Integer())
+    available_slots = db.Column(db.Integer(),default=0)
+
 
 
 
@@ -29,8 +30,7 @@ class ParkingSpot(db.Model):
     __tablename__='parking_spot'
     id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
     lot_id = db.Column(db.Integer(), db.ForeignKey('parking_lot.id'))
-    status = db.Column(db.String(20), nullable=False)  
-    # vehicle_number = db.Column(db.String(20), nullable=True)  
+    status = db.Column(db.String(20), nullable=False, default='available')  
 
 class ReservedSpot(db.Model):
     __tablename__='reserved_spot'

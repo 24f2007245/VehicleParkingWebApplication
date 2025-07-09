@@ -4,9 +4,40 @@
 
 {%block content%}
 <div class="container">
-    <h3>Parking Lots</h3>
-    <hr>
-        <button type="button" class="btn btn-outline-secondary"><a href="/go_add_lot">Add Lot</a></button>
-</div>
     
-    {%endblock%}
+    <div id="sdf">
+        <h2>Parking Lots</h2>
+        <div class="lot_dibba">
+            {% for lot in parking_lots %}
+            <div class="lot" class="card-body">
+                <div>Lot Id: {{ lot.id }}</div>
+                <div>Lot Pin Code: {{ lot.pin_code }}</div>
+                <div class="actions"><a href="/edit_lot/{{lot.id}}">Edit Lot</a></div>
+                <div class="spaces">Total Slots: {{ lot.total_slots }}</div>
+                <div class="spaces">Available: {{ lot.available_slots }}</div>
+                
+                {% for i in range(lot.total_slots) %}
+                <span class="bibba">-notA </span>|
+                {% endfor %}
+
+                {% for i in range(lot.available_slots) %}
+                <span class="available">A </span>|
+                {% endfor %}
+                
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+    <h3>Add Parking Lots</h3>
+    <div class="card" style="width: 18rem;">
+        
+        <button type="button" class="btn btn-outline-secondary"><a href="/go_add_lot">Add Lot</a></button>
+    </div>
+
+
+</div>
+
+<hr>
+
+{%endblock%}

@@ -9,6 +9,7 @@
     align-items: center;
     height: 100vh;
 }
+
 #add_lot {
     display: flex;
     justify-content: center;
@@ -48,9 +49,23 @@ button {
     #register_box {
         border: none;
     }
+
 }
 
 .container {
     width: 80%;
     justify-content: center;
+}
+.lot {
+    /* display: flex; */
+   
+}
+.dibba {
+   border: 2px black solid;
+   display: flex;
+   color: cadetblue;
+}
+.lot_dibba {
+    border: 1px solid;
+    padding: 10px;
 }

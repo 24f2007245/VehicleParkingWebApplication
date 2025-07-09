@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Lot {% endblock %}
+
+{% block content %}
+
+<div id="add_lot">
+    <div class="box">
+        <h1>Edit Lot</h1><br>
+        <form action="{{ url_for('edit_lot', id=lot.id) }}" method="post">
+            <label for="id">Lot Id:</label>
+            <input type="text" name="id" id="id" placeholder="Enter Lot Id" required value="{{ lot.id }}">
+            <br>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="location" required value="{{ lot.location }}">
+            <br>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter Address" required value="{{ lot.address }}">
+            <br>
+
+            <label for="pin_code">Pin Code:</label>
+            <input type="text" id="pin_code" name="pin_code" placeholder="Enter Pin Code" value="{{ lot.pin_code }}"><br>
+
+            <label for="total_slots">Total Slots:</label>
+            <input type="text" id="total_slots" name="total_slots" placeholder="Enter total number of slots" value="{{ lot.total_slots }}"><br>
+
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" placeholder="Enter the price" value="{{ lot.price }}"><br><br>
+
+            <button type="submit" class="btn btn-outline-secondary">Update Lot</button>
+
+        </form>
+        <br>
+        <a href="/dashboard">Go Back</a>
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{%extend base.html%}
+{%block title%}Add Spot{%endblock%}
+
+{% block content %}
+
+    <div id="add_spot">
+        <div class="box">
+            <h1>Add Spot</h1><br>
+            <form action="/add_spot" method="post">
+                <label for="id">Spot Id:</label>
+                <input type="text" name="id" id="id" placeholder="Enter Spot Id" required>
+                <br>
+                <label for="lot_id">Lot Id:</label>
+                <input type="text" id="lot_id" name="lot_id"placeholder="Enter Lot Id" required>
+                <br>
+                
+                <label for="status">Status:</label>
+                <input type="text" id="status" name="status" placeholder="Status" required>
+                <br>
+                
+                <button type="submit" class="btn btn-outline-secondary">Add spot</button>
+                
+            </form>
+            <br>
+            <a href="/dashboard">Go Back</a>
+        </div>
+    </div>
+    
+{% endblock %}
