@@ -77,26 +77,18 @@ def registered_users():
 @app.route('/add_lot', methods=['GET', 'POST'])
 def add_lot():
     if request.method == 'POST':
-        id = int(request.form.get('id'))
+        id = request.form.get('id')
         location = request.form.get('location')
-        total_slots = int(request.form.get('total_slots'))
+        total_spots = request.form.get('total_slots')
         pin_code = request.form.get('pin_code')
         price = request.form.get('price')
         address = request.form.get('address')
-
-       
-        try:
-            total_slots = int(total_slots) if total_slots else 0
-            price = float(price) if price else 0.0
-        except ValueError:
-            flash("Invalid input for slots or price", "error")
-            return redirect(url_for('add_lot'))
 
         if ParkingLot.query.filter_by(id=id).first():
             flash('Parking lot already exists.', 'error')
             return redirect(url_for('add_lot'))
 
-        new_lot = ParkingLot(id=id, location=location, total_slots=total_slots,
+        new_lot = ParkingLot(id=id, location=location, total_spots=total_spots,
                              pin_code=pin_code, price=price, address=address)
         db.session.add(new_lot)
         db.session.commit()
@@ -113,7 +105,7 @@ def edit_lot(id):
         lot.location = request.form.get('location')
         lot.address = request.form.get('address')
         lot.pin_code = request.form.get('pin_code')
-        lot.total_slots = int(request.form.get('total_slots'))
+        lot.total_spots = int(request.form.get('total_spots'))
         lot.price = request.form.get('price')
 
         db.session.commit()
@@ -139,3 +131,11 @@ def logout():
     session.pop('roles', None)
     flash('You have been logged out.', 'success')
     return redirect(url_for('login'))
+
+@app.route('/delete_lot/<int:id>')
+def delete_lot(id):
+    lot=ParkingLot.query.get_or_404(id)
+    db.session.delete(lot)
+    db.session.commit()
+    flash('Parking Lot Deleted, Successfully.','success')
+    return redirect(url_for('dashboard'))

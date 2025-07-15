@@ -17,11 +17,11 @@ class ParkingLot(db.Model):
     id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
     lot_name = db.Column(db.String(60), nullable=True)
     location = db.Column(db.String(100), nullable=True)
-    pin_code = db.Column(db.String(10), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    pin_code = db.Column(db.Integer(), nullable=False)
+    price = db.Column(db.Integer(), nullable=False, default=0)
     address = db.Column(db.String(200), nullable=True)  
-    total_slots = db.Column(db.Integer(), nullable=False)
-    available_slots = db.Column(db.Integer(),default=0)
+    total_spots = db.Column(db.Integer(), nullable=False)
+    reserved_spots = db.Column(db.Integer(), default=0)
 
 
 

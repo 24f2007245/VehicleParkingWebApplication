@@ -69,3 +69,6 @@ button {
     border: 1px solid;
     padding: 10px;
 }
+a {
+    text-decoration: none;
+}

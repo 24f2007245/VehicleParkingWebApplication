@@ -9,7 +9,7 @@
             <h1>Add Lot</h1><br>
             <form action="/add_lot" method="post">
                 <label for="id">Lot Id:</label>
-                <input type="text" name="id" id="id" placeholder="Enter Lot Id" required>
+                <input type="number" name="id" id="id" placeholder="Enter Lot Id" required>
                 <br>
                 <label for="location">Location:</label>
                 <input type="text" id="location" name="location"placeholder="location" required>
@@ -20,13 +20,13 @@
                 <br>
                 
                 <label for="pin_code">Pin Code:</label>
-                <input type="text" id="pin_code" name="pin_code" placeholder="Enter Pin Code" ><br>
+                <input type="number" id="pin_code" name="pin_code" placeholder="Enter Pin Code" required><br>
                 
                 <label for="total_slots">Total Slots:</label>
-                <input type="text" id="total_slots" name="total_slots" placeholder="Enter total number of slots" ><br>
+                <input type="number" id="total_slots" name="total_slots" placeholder="Enter total number of slots" required ><br>
                 
                 <label for="vehicle_no">Price:</label>
-                <input type="text" id="price" name="price" placeholder="Enter the price" ><br><br>
+                <input type="number" id="price" name="price" placeholder="Enter the price" ><br><br>
 
                 <button type="submit" class="btn btn-outline-secondary">Add slot</button>
                 

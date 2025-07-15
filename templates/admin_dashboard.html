@@ -10,20 +10,23 @@
         <div class="lot_dibba">
             {% for lot in parking_lots %}
             <div class="lot" class="card-body">
-                <div>Lot Id: {{ lot.id }}</div>
-                <div>Lot Pin Code: {{ lot.pin_code }}</div>
+                <div style="color: rgb(7, 134, 91);">Lot Id: {{ lot.id }}</div>
                 <div class="actions"><a href="/edit_lot/{{lot.id}}">Edit Lot</a></div>
-                <div class="spaces">Total Slots: {{ lot.total_slots }}</div>
-                <div class="spaces">Available: {{ lot.available_slots }}</div>
+
+                <div>Lot Address: {{ lot.location }}, {{ lot.address}}, {{ lot.pin_code }}</div>
+                <div class="spaces">Total Slots: {{ lot.total_spots }}</div>
+                <div class="spaces">Available: {{ lot.total_spots - lot.reserved_spots }}</div>
                 
-                {% for i in range(lot.total_slots) %}
+                
+                {% for i in range(lot.reserved_spots) %}
                 <span class="bibba">-notA </span>|
                 {% endfor %}
 
-                {% for i in range(lot.available_slots) %}
+                {% for i in range(lot.total_spots-lot.reserved_spots) %}
                 <span class="available">A </span>|
                 {% endfor %}
-                
+                <div><a href="/delete_lot/{{lot.id}}">Delete Lot</a></div>
+
             </div>
             <hr>
             {% endfor %}
