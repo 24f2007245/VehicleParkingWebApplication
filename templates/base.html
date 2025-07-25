@@ -19,19 +19,16 @@
 
     {% include 'nav.html' %}
 
-  
     {%with message= get_flashed_messages(with_categories=true) %}
     {% if message %}
     {% for category, m in message %}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding-left: 32px;">
         {{m}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endfor %}
     {% endif %}
     {%endwith%}
-
-
 
     {% block slides %} {%endblock %}
     {% block content %} {% endblock %}

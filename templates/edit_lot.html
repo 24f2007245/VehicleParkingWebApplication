@@ -9,27 +9,27 @@
         <h1>Edit Lot</h1><br>
         <form action="{{ url_for('edit_lot', id=lot.id) }}" method="post">
             <label for="id">Lot Id:</label>
-            <input type="text" name="id" id="id" placeholder="Enter Lot Id" required value="{{ lot.id }}">
+            <input type="number" name="id" id="id" required value="{{ lot.id }}">
             <br>
 
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" placeholder="location" required value="{{ lot.location }}">
+            <label for="lot_name">lot_name:</label>
+            <input type="text" id="lot_name" name="lot_name" required value="{{ lot.lot_name }}">
             <br>
 
             <label for="address">Address:</label>
-            <input type="text" id="address" name="address" placeholder="Enter Address" required value="{{ lot.address }}">
+            <input type="text" id="address" name="address" required value="{{ lot.address }}">
             <br>
 
             <label for="pin_code">Pin Code:</label>
-            <input type="text" id="pin_code" name="pin_code" placeholder="Enter Pin Code" value="{{ lot.pin_code }}"><br>
+            <input type="number" id="pin_code" name="pin_code" value="{{ lot.pin_code }}"><br>
 
             <label for="total_slots">Total Spots:</label>
-            <input type="text" id="total_spots" name="total_spots" placeholder="Enter total number of spots" value="{{ lot.total_spots }}"><br>
+            <input type="number" id="total_spots" name="total_spots" value="{{ lot.total_spots }}"><br>
 
             <label for="price">Price:</label>
-            <input type="text" id="price" name="price" placeholder="Enter the price" value="{{ lot.price }}"><br><br>
+            <input type="number" id="price" name="price" value="{{ lot.price }}"><br><br>
 
-            <button type="submit" class="btn btn-outline-secondary">Update Lot</button>
+            <button type="submit" class="btn btn-outline-secondary">Submit</button>
 
         </form>
         <br>

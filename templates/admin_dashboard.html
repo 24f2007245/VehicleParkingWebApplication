@@ -4,39 +4,48 @@
 
 {%block content%}
 <div class="container">
-    
+    <br>
+    <h3>Add Parking Lots</h3>
+    <div>
+        <p>Click on the Add Lot button to create a new Lot...</p>
+        <button type="button"><a href="/add_lot">Add Lot</a></button>
+    </div>
+    <br>
+    <hr>
+
+    {# parking lot details rendering via loop #}
     <div id="sdf">
         <h2>Parking Lots</h2>
+        <br>
         <div class="lot_dibba">
+            <h5>Lot Details-</h5>
             {% for lot in parking_lots %}
             <div class="lot" class="card-body">
-                <div style="color: rgb(7, 134, 91);">Lot Id: {{ lot.id }}</div>
+                <div style="color: rgb(7, 134, 91);"><b>Lot Id: {{ lot.id }}</b></div>
                 <div class="actions"><a href="/edit_lot/{{lot.id}}">Edit Lot</a></div>
 
-                <div>Lot Address: {{ lot.location }}, {{ lot.address}}, {{ lot.pin_code }}</div>
+                <div>Lot Address: {{ lot.lot_name }}, {{ lot.address}}, {{ lot.pin_code }}</div>
                 <div class="spaces">Total Slots: {{ lot.total_spots }}</div>
                 <div class="spaces">Available: {{ lot.total_spots - lot.reserved_spots }}</div>
-                
-                
+                <div class="spaces">Price per minutes: ₹{{ lot.price }}</div>
+
+
                 {% for i in range(lot.reserved_spots) %}
-                <span class="bibba">-notA </span>|
+                <span class="dibba">notA </span>
                 {% endfor %}
 
                 {% for i in range(lot.total_spots-lot.reserved_spots) %}
-                <span class="available">A </span>|
+                <span class="available">A </span>
                 {% endfor %}
                 <div><a href="/delete_lot/{{lot.id}}">Delete Lot</a></div>
 
             </div>
-            <hr>
+            {% if not loop.last %}<hr>{%endif%}
+            
             {% endfor %}
         </div>
     </div>
-    <h3>Add Parking Lots</h3>
-    <div class="card" style="width: 18rem;">
-        
-        <button type="button" class="btn btn-outline-secondary"><a href="/go_add_lot">Add Lot</a></button>
-    </div>
+    <br>
 
 
 </div>

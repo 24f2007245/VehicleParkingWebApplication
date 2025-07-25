@@ -1,34 +1,31 @@
-{%extend base.html}
-{%block title%}Reserve Spot{%endblock%}
-{%block content%}
-<div class="box">
-            <h1>Reserve Spot</h1><br>
-            <form action="{{ url_for('reserve_spot', id=spot.id) }}" method="post">
-            <label for="id">Lot Id:</label>
-            <input type="text" name="id" id="id" placeholder="Enter Lot Id" required value="{{ spot.id }}">
-            <br>
+{% extends "base.html" %}
+{% block title %}Reserve Spot{% endblock %}
+{% block content %}
+<div id="spot_box" >
+    <div class="box">
+    <h1>Reserve Spot</h1><br>
+    <h5>Parking Lot Details-</h5>
 
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" placeholder="location" required value="{{ spot.location }}">
-            <br>
+    <p>Lot Id: {{lot.id}}</p>
+    <p>Lot Name: {{lot.lot_name}}</p>
+    <p>Address: {{lot.address}},{{lot.pin_code}}</p>
+    <p>Available Spots: {{lot.total_spots - lot.reserved_spots}}</p>
+    <p>Price(rupees per minute): {{lot.price}}</p>
+    <p>Time: {{start_time}}</p>
+    
+    
 
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" placeholder="Enter Address" required value="{{ spot.address }}">
-            <br>
 
-            <label for="pin_code">Pin Code:</label>
-            <input type="text" id="pin_code" name="pin_code" placeholder="Enter Pin Code" value="{{ spot.pin_code }}"><br>
+    <form action="{{ url_for('reserve_spot',id=lot.id)}}" method="post">
 
-            <label for="total_slots">Available Slots:</label>
-            <input type="text" id="total_slots" name="total_slots" placeholder="Enter total number of slots" value="{{ spot.available_slots }}"><br>
+        <label for="vehicle_no">Vehicle No:</label>
+        <input type="text" id="price" name="vehicle_no" placeholder="Enter Your vehicle number" required><br><br>
 
-            <label for="vehicle_no">Vehicle No:</label>
-            <input type="text" id="price" name="vehicle_no" placeholder="Enter Vehicle No"><br><br>
+        <button type="submit">Reserve spot</button>
 
-            <button type="submit" class="btn btn-outline-secondary">Reserve spot</button>
-
-        </form>
-            <br>
-            <a href="/dashboard">Go Back</a>
-        </div>
+    </form>
+    <br>
+    <a href="/dashboard">Go Back</a>
+    </div>
+</div>
 {%endblock%}

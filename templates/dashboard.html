@@ -3,70 +3,114 @@
 
 {% block content %}
 <br>
-<div class="container">
-    <h4> Recent Parking History</h4>
-
-    <!-- <table class="table table-striped table-hover">
-
+<div class="container mt-4">
+    <h4>Your Reserved Spots</h4>
+    <p>These are The Parking Spots which are Active/Your Reserved Spots</p>
+    <table class="table table-striped">
         <thead>
             <tr>
+                <th>Lot Id</th>
+                <th>Lot Name</th>
                 <th>Spot Id</th>
-                <th>Location</th>
-                <th>Vehicle No</th>
-                <th>Timestamp</th>
-                <th>Action</th>
+                <th>Start Time</th>
+                <th>Release Spot</th>
+
             </tr>
         </thead>
         <tbody>
-            {% for spot in spots %}
+            {% for r in reserv %}
+            {% if r.end_time is none %}
             <tr>
-                <td>{{ spot.spot_id }}</td>
-                <td>{{ spot.location }}</td>
-                <td>{{ spot.vehicle_no }}</td>
-                <td>{{ spot.timestamp }}</td>
+                <td>{{ r.spot.parking_lot.id }}</td>
+
+                <td>{{ r.spot.parking_lot.lot_name }}</td>
+                <td>{{ r.spot.id }}</td>
+                <td>{{ r.start_time }}</td>
                 <td>
-                    <a href="/edit_spot/{{ spot.spot_id }}" class="btn btn-primary">Edit</a>
-                    <a href="/delete_spot/{{ spot.spot_id }}" class="btn btn-danger">Delete</a>
+                    <form action="{{ url_for('release_spot', id=r.id) }}" method="POST">
+                        <button type="submit" class="btn">Release</button>
+                    </form>
                 </td>
+
             </tr>
+            {%endif%}
             {% endfor %}
         </tbody>
+    </table>
+    <br><br><hr>
+    <h4>Recent Parkings</h4>
+    <p>All Your Recent Parking Details are rendering below</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Lot Id</th>
+                <th>Lot Name</th>
+                <th>Spot Id</th>
+                <th>Vehicle No</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Total Price</th>
 
-    </table> -->
-    <br><br><br>
-    
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in reserv %}
+            {% if r.end_time is not none %}
+            <tr>
+                <td>{{ r.spot.parking_lot.id }}</td>
+
+                <td>{{ r.spot.parking_lot.lot_name }}</td>
+                <td>{{ r.spot.id }}</td>
+                <td>{{ r.vehicle_no}}</td>
+                <td>{{ r.start_time }}</td>
+                <td>{{ r.end_time }}</td>
+                <td>₹{{ r.parking_cost }}</td>
+
+            </tr>
+            {%endif%}
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
+<br>
+<br>
+
 
 <!-- Additional Feature Not required -->
 <div class="container">
     <h4>Explore</h4>
-    <table class="table table-striped table-hover">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
 
-        <thead>
-            <tr>
-                <th>Lot Id</th>
-                <th>Location</th>
-                <th>Address</th>
-                <th>Reserve</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            {% for spot in parking_lots %}
-            <tr>
-                <td>{{ spot.id }}</td>
-                <td>{{ spot.location }}</td>
-                <td>{{ spot.address }}</td>
-                <td>
-                    <a href="/reserve_spot/{{ spot.spot_id }}" >Reserve Spot</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
+            <thead>
+                <tr>
+                    <th>Lot Id</th>
+                    <th>Lot Name</th>
+                    <th>Price</th>
+                    <th>Address</th>
+                    <th>Reserve</th>
 
-    </table>
+                </tr>
+            </thead>
+            <tbody>
+                {% for spot in lot %}
+                <tr>
+                    <td>{{ spot.id }}</td>
+                    <td>{{ spot.lot_name }}</td>
+                    <td>{{ spot.price }}</td>
+                    <td>{{ spot.address }}</td>
+                    <td>
+                        <a href="/reserve_spot/{{spot.id}}">Reserve Spot</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
     <br><br><br>
 </div>
+<hr>
 <!-- yahan tak h additional feature -->
 
 {%endblock%}

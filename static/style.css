@@ -3,18 +3,12 @@
     padding: 0;
 }
 
-#login {
+#spot_box, #add_lot, #login {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
-
-#add_lot {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200vh;
+    height: auto;
+    margin-top: 30px;
 }
 
 .box {
@@ -42,33 +36,38 @@ button {
     cursor: pointer;
 }
 
-
-@media (max-width: 768px) {
-
-    #login_box,
-    #register_box {
-        border: none;
-    }
-
-}
-
 .container {
     width: 80%;
     justify-content: center;
 }
-.lot {
-    /* display: flex; */
-   
-}
+
 .dibba {
-   border: 2px black solid;
-   display: flex;
-   color: cadetblue;
+   background-color: orange;
+   border-radius: 3px;
+   margin: 3px;
 }
-.lot_dibba {
-    border: 1px solid;
-    padding: 10px;
+.available {
+    background-color: aquamarine;
+    border-radius: 3px;
+    margin: 3px;
+    
 }
 a {
     text-decoration: none;
+}
+.navbar-brand{
+    padding-left: 20px;
+}
+
+ @media (max-width: 768px) {
+    .box {
+    border: none;
+    }
+    .navbar-brand{
+    padding-left: 0px;
+    }
+    .container {
+    width: 100%;
+    justify-content: center;
+    }
 }
