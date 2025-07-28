@@ -4,14 +4,14 @@
 
 {% block content %}
 
-    <div id="register">
-        <div class="box">
+    <div id="register" class="red_pattern">
+        <div class="box" >
             <h1>Register</h1><br>
             <form action="/register" method="post">
                 <label for="user_name">User Name:</label>
                 <input type="text" name="user_name" id="user_name" placeholder="Enter Your Full Name" required><br>
                 <label for="user_email">User Email_Id:</label>
-                <input type="text" id="user_email" name="user_email"placeholder="example@abcd.com" required>
+                <input type="email" id="user_email" name="user_email"placeholder="example@abcd.com" required>
                 <br>
                 
                 <label for="password">Password:</label>
@@ -20,9 +20,10 @@
                 
                 <label for="address">Address:</label>
                 <input type="text" id="Address" name="Address" placeholder="Enter Your Address" ><br><br>
-                <button type="submit" class="btn btn-outline-secondary">Register</button>
+                <button type="submit" class="btn btn-outline-primary">Register</button>
             </form>
             <br>
+            <hr>
             <a href="/login">Login From Here</a>
         </div>
     </div>

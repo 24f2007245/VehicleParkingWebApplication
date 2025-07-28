@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Spot Details{%endblock%}
+
+{% block content %}
+
+    <div id="spot_box" class="red_pattern">
+        <div class="box">
+            <h5>Spot Details-</h5>
+            <br>
+            {% if not spot_details.end_time %}
+            <!-- <h6>Active User Data-</h6> -->
+            {% for spot in spot_details %}
+            <p>Spot Id: {{spot.spot_id}}</p>
+            <p>User Id: {{spot.user_id}}</p>
+            <p>User Name: {{spot.users.user_name}} </p>
+            <p>User Email: {{spot.users.user_email}} </p>
+            <p>Vehicle No: {{spot.vehicle_no}} </p>
+            <p>Parking Timestamp: {{spot.start_time}} </p>
+            {%endfor%}
+            {%endif%}
+            <hr>
+            
+            {#
+            <h6>Previous Users Data-</h6>
+            {% for spot in spot_details %}
+            <p>Spot Id: {{spot.spot_id}}</p>
+            <p>User Id: {{spot.user_id}}</p>
+            <p>User Name: {{spot.users.user_name}} </p>
+            <p>User Email: {{spot.users.user_email}} </p>
+            <p>Vehicle No: {{spot.vehicle_no}} </p>
+            <p>Start Time: {{spot.start_time}} </p>
+            <p>End Time: {{spot.end_time}} </p>
+            <p>Parking Cost: ₹{{spot.parking_cost}} </p>
+            {%endfor%}  #}
+            
+            <a href="/dashboard">Go Back</a>
+        </div>
+    </div>
+    
+{% endblock %}
