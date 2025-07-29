@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Parking Cost Details{%endblock%}
+
+{% block content %}
+
+    <div id="spot_box" class="red_pattern">
+        <div class="box">
+            <h5>Parking Cost Details-</h5>
+
+            {% for res in res_spot %}
+            <p>User Id: {{res.user_id}}</p>
+            <p>User Name: {{res.users.user_name}} </p>
+            <p>User Email: {{res.users.user_email}} </p>
+
+            <p>Spot Id: {{res.spot_id}}</p>
+
+
+            <p>Vehicle No: {{res.vehicle_no}} </p>
+            <p>Total Timestamp: {{duration_hour}} </p>
+            <p>Total Parking Cost: <b>₹{{total_cost}}</b></p>
+            
+            <h6>Payment Options</h6>
+            <p>Currently, we are not accepting online payment. We are extremly sorry for your inconvenience. <br>Please go with Cash payment.</p>
+            <p>Cash Payment option</p>
+            <form action="{{ url_for('release_spot', id=res.id) }}" method="POST">
+                <button type="submit" >Pay via cash</button>
+            </form>
+            {%endfor%}
+            <hr>
+            
+            <a href="/dashboard">Go Back</a>
+        </div>
+    </div>
+    
+{% endblock %}

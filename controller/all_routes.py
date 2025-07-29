@@ -219,8 +219,23 @@ def release_spot(id):
 
     db.session.commit()
 
-    flash(f'Spot {spot.id} is released. Cost: ₹{total_cost}', 'success')
+    flash(f'Spot {spot.id} is released.', 'success')
     return redirect(url_for('dashboard'))
+
+
+@app.route('/parking_cost/<int:id>',methods=['GET','POST'])
+def parking_cost(id):
+    res_spot=ReservedSpot.query.filter_by(id=id).all()
+    res=ReservedSpot.query.get_or_404(id)
+    end_time = datetime.now()
+    duration_hour = (end_time - res.start_time).total_seconds() / 3600
+    cost_per_hour = res.spot.parking_lot.price  
+    total_cost = round(duration_hour * cost_per_hour, 2)
+
+
+    return render_template('parking_cost.html',res_spot=res_spot, duration_hour=duration_hour, total_cost=total_cost)
+
+
 
 @app.route('/spot/<int:id>',methods=["GET"])
 def spot_details(id):
@@ -291,10 +306,10 @@ def summary():
     plt.savefig('static/usersummaryhist1.png')
     plt.close()
 
-    plt.hist(durations)
-    plt.title('Histogram of Parking Duration')
-    plt.xlabel('Parking Duration (in hours)')
-    plt.savefig('static/usersummaryhist2.png')
-    plt.close()
+    # plt.hist(durations)
+    # plt.title('Histogram of Parking Duration')
+    # plt.xlabel('Parking Duration (in hours)')
+    # plt.savefig('static/usersummaryhist2.png')
+    # plt.close()
 
-    return render_template('summary.html',img2='static/usersummaryhist1.png',img1='static/usersummaryhist2.png')
+    return render_template('summary.html',img2='static/usersummaryhist1.png')

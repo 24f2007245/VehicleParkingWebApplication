@@ -36,8 +36,8 @@
                 <td>{{ r.vehicle_no }}</td>
                 <td>{{ r.start_time }}</td>
                 <td>
-                    <form action="{{ url_for('release_spot', id=r.id) }}" method="POST">
-                        <button type="submit" class="btn">Release Spot</button>
+                    <form action="{{ url_for('parking_cost', id=r.id) }}" method="POST">
+                        <button type="submit" class="btn">Release</button>
                     </form>
                 </td>
 
@@ -123,7 +123,7 @@
                     <td>{{ spot.total_spots-spot.reserved_spots}}</td>
                     <td>{{ spot.address }}</td>
                     <td>
-                        <a href="/reserve_spot/{{spot.id}}">Reserve</a>
+                        <a href="/reserve_spot/{{spot.id}}">reserve</a>
                     </td>
                 </tr>
                 {% endfor %}
