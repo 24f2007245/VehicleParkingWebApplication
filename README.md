@@ -75,6 +75,7 @@ C:.
         index.html
         login.html
         nav.html
+        parking_cost.html
         register.html
         registered_users.html
         reserve_spot.html
