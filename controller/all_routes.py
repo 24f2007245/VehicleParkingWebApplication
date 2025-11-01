@@ -129,11 +129,31 @@ def edit_lot(id):
             lot.lot_name = request.form.get('lot_name')
             lot.address = request.form.get('address')
             lot.pin_code = request.form.get('pin_code')
-            lot.total_spots = request.form.get('total_spots')
+            lot.total_spots=int(request.form.get('total_spots'))
             lot.price = request.form.get('price')
 
+            # checking eligibility of updation
+            if lot.reserved_spots>int(request.form.get('total_spots')):
+                flash('reserved spot is more then new total spot!!!!', 'warning')
+                return redirect(url_for('dashboard')) 
             db.session.commit()
 
+            # deleteing all available spot 
+            spt=ParkingSpot.query.filter_by(lot_id=id, status=0).all()
+            for _ in spt:
+                db.session.delete(_)
+            db.session.commit()
+
+            # creating new spots
+            r_s=lot.reserved_spots
+            n_s=int(request.form.get('total_spots'))
+            rest_s=n_s-r_s
+            for _ in range(1,rest_s+1):
+                spot=ParkingSpot(lot_id=id,status=0) #0-available
+                db.session.add(spot)
+            db.session.commit()
+
+            flash("all done","success")
             return redirect(url_for('dashboard')) 
         return render_template('edit_lot.html', lot=lot)
     return redirect(url_for('login'))

@@ -3,10 +3,10 @@
 ### Author
 
 Chhotu Kumar  
-24f2007245  
-[24f2007245@ds.study.iitm.ac.in](mailto:24f2007245@ds.study.iitm.ac.in)  
-I believe in the power of hard work to drive success, tackling challenges with relentless dedication and turning persistent effort into innovative technological solutions that make a real impact.
-It is a `Vehicle-Parking-App` a web application developed using the Python framework __flask__.
+[chhotu_kumar@zohomail.in](mailto:chhotu_kumar@zohomail.in)  
+I believe in the power of hard work to drive success, challenges with relentless dedication and turning persistent effort into innovative technological solutions that make a real impact.
+
+This is my _MAD1 Project_, problem statement on vehicle_parking_web_application.
 
 ### Overview
 
@@ -82,16 +82,6 @@ C:.
         spot.html
         summary.html
 ```
-### DB Schema Design
-
-The database uses SQLite via Flask-SQLAlchemy:
-
-* UserData: Columns \- id (Integer, Primary Key, Autoincrement), user\_name (String, Not Null),user\_email (String, Not Null, Unique),password (String, Not Null),address (String, Nullable), role (String, default 'user'). A one-to-many relationship with the reserved\_spot.  
-* ParkingLot: Columns \- id (Integer, Primary Key, Autoincrement), lot\_name (String, Not Null), pin\_code(Integer, Not null), price(Integer, Not Null), address (String, Not Null), total\_spots (Integer, Not null), reserved\_spots(Integer, default 0). A one-to-many relationship with the parking\_spot table.  
-* ParkingSpot: Columns \- id (Integer, Primary Key, Autoincrement), lot\_id (Integer, Foreign Key to parking\_lot.id), status (String, default 0/available). A one-to-many relationship with the reserved\_spot.  
-* ReservedSpot: Columns \- id (Integer, Primary Key, Autoincrement), user\_id (Integer, Foreign Key to user\_data), spot\_id (Integer, Foreign Key to parking\_spot.id), vehicle\_no (String, Not Null), start\_time (DateTime, Not Null), end\_time (DateTime, Not Null), parking\_cost (Float, not Null). 
-
-Reasons behind designing this way- Primary keys and unique emails maintain user integrity. Foreign keys ensure that reservations and spots point to valid lots and users. Spot status is managed with an availability flag.
 
 ![Model image.](/static/images/model_img.png "This is a model image.")
 

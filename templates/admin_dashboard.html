@@ -3,19 +3,19 @@
 
 
 {%block content%}
-<div id="dsh" class="red_pattern">
 <div class="container">
     <br>
     <h3>Add Parking Lots</h3>
     <div>
         <p>Click on the Add Lot button to create a new Lot...</p>
-        <button type="button"><a href="/add_lot">Add Lot</a></button>
+        <button type="button"><a href="/add_lot" style="color: black;">Add Lot</a></button>
     </div>
     <br>
-    <hr>
+    </div>
+    
 
     {# parking lot details rendering via loop #}
-    <div id="sdf">
+    <div id="sdf" class="container">
         <h2>Parking Lots</h2>
         <br>
         <div class="lot_dibba">
@@ -29,10 +29,9 @@
                 <div class="spaces">Total Slots: {{ lot.total_spots }}</div>
                 <div class="spaces">Available: {{ lot.total_spots - lot.reserved_spots }}</div>
                 <div class="spaces">Price (per hour): ₹{{ lot.price }}</div>
-
                 <!-- spots relation se data lega -->
                 {% for i in lot.spots %}
-                    
+                        
                         {% if i.status==1%}
                             <span class="dibba"><a href="/spot/{{i.id}}">{{i.id}} </a></span>
                         {% else %}
@@ -40,6 +39,7 @@
                         <span class="available"><a href="#">{{i.id}}</a> </span>
                         {%endif%}
                 {% endfor %}
+                <p><b>Note:</b>click on occupied spots to view info</p>
                 <div><a href="/delete_lot/{{lot.id}}">Delete Lot</a></div>
                 
                 
@@ -54,14 +54,15 @@
                 <ol>
                     <li>Green Box Shows Spot is Available</li>
                     <li>Red box Shows Spot is Occupied</li>
+                    
                 </ol>
         </div>
     </div>
     <br>
 
 
-</div>
-</div>
+
+
 
 
 

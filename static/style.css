@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-#spot_box, #add_lot, #login, #summary_box, #dsh{
+#spot_box, #add_lot, #login, #summary_box{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,20 +13,20 @@
 
 #summary_box {
     padding: 20px;
+    background-color: whitesmoke;
+    margin: 3% 5%;
 }
 
 .box {
     padding: 50px;
-    background-color: white;
-    margin-top: 30px;  
-    margin-bottom: 30px;
+    background-color: whitesmoke;
+    margin: 30px 30px; 
 }
 
 #register {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120vh;
 }
 
 input {
@@ -37,12 +37,23 @@ input {
 }
 
 button {
-    padding: 3px 10px;
+    padding: 5px 15px;
     cursor: pointer;
+    border: #A0332D solid 1px;
+    background-color: white;
+}
+button:hover{
+    background-color: #A0332D;
+    /* border: none; */
+    color: white;
+    /* font-size: large; */
+}
+input{
+    border: solid 1px #A0332D;
 }
 
 .container {
-    background-color: white;
+    background-color: whitesmoke;
     width: 80%;
     justify-content: center;
     padding: 30px;
@@ -62,8 +73,14 @@ button {
     margin: 3px;
     
 }
+
 a {
     text-decoration: none;
+    color: #A0332D;
+}
+a:hover{
+    color: black;
+
 }
 .navbar-brand{
     padding-left: 20px;
@@ -77,13 +94,13 @@ a {
 
 }
 nav.navbar.navbar-expand-lg.bg-body-tertiary {
-    background-color: #A0332D!important;
+    background-color: rgb(241, 191, 151)!important;
     }
 
     /* #a8342c */
 .nav-link { 
-    color: white;
-    padding: 10px 20px;
+    color: dark;
+    padding: 5px 10px;
     }
 
  button.navbar-toggler:focus,
@@ -91,7 +108,7 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary {
         outline: none;
         box-shadow: none; 
     }
-.red_pattern {
+/* .red_pattern {
     background-image: repeating-linear-gradient(
     45deg,
     #A0332D,
@@ -99,7 +116,7 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary {
     transparent 2px,
     transparent 20px 
   );
-}
+} */
 .container.mt-4 {
         padding: 30px;
     }
@@ -112,27 +129,27 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary {
     .navbar-brand{
     padding-left: 0px;
     }
-    .container {
+    /* .container {
     width: 100%;
     justify-content: center;
-    }
+    } */
     img.d-block.w-100 {
       height: auto; 
       object-fit: contain;
     }
     
     .box {
-        background-color: transparent;
+        background-color: whitesmoke;
         border: none;
-        padding: 30px;
+        padding: 20px;
+        margin: 5%;
         
     }
     .container {
-    background-color: white;
-    padding: 20px;
+    background-color: whitesmoke;
     height: auto;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 15px;
+    width: 100%;
     }
     .container.mt-4 {
         background-color: transparent;
